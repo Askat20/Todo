@@ -1,6 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import React, { useState } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
-function Header({ handleClick }) {
+function Header({ togglePage }) {
+  const [state, setState] = useState(false);
   return (
     <>
       <StyleHeader />
@@ -32,12 +34,14 @@ function Header({ handleClick }) {
             Добавить в друзья
           </a>
         </nav>
+        <Togle onClick={togglePage}> {state ? "TodoList" : "Users"}</Togle>
       </header>
     </>
   );
 }
 
 export default Header;
+
 const StyleHeader = createGlobalStyle`
 .header{
   width: 100vw;
@@ -57,6 +61,14 @@ const StyleHeader = createGlobalStyle`
 }
 .nav{
   display: flex;
-gap: 70px;
+  gap: 70px;
 }
+`;
+
+const Togle = styled.button`
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: slateblue;
+  cursor: pointer;
 `;
